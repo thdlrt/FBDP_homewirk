@@ -5,9 +5,9 @@ import spire.random.Random.int
 
 object Main {
   def main(args: Array[String]) {
-    //task1()
+    task1()
     //task2()
-    task3()
+    //task3()
   }
   def task1(): Unit = {
     val conf = new SparkConf().setAppName("Spark Pi").setMaster("local")
@@ -37,7 +37,7 @@ object Main {
     val max5RDD = sc.parallelize(max5)
     val min5RDD = sc.parallelize(min5)
     val res2 = max5RDD.union(min5RDD)
-    val res3 = res2.map(t => t._1.mkString(","))
+    val res3 = res2.map(t => t._1(0)+" "+t._1(1)+" "+t._1(7)+" "+t._1(6)+", "+t._2)
     val outputPath2 = "C:\\Users\\MSI\\OneDrive\\study\\作业\\金融大数据\\spark\\output\\task1_2"
     res3.saveAsTextFile(outputPath2)
     try Thread.sleep(100000)
